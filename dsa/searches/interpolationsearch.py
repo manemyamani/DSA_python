@@ -1,0 +1,24 @@
+from array import *
+def intersearch(lb,up,k):
+    if lb>up:
+        return -1   
+    pos=lb+(((k-arr[lb])*(up-lb))//(arr[up]-arr[lb]))
+    if arr[pos]==k:       
+        return pos
+    elif arr[pos]>k:
+        up=pos-1
+        return intersearch(lb,up,k)
+    elif arr[pos]<k:
+        lb=pos+1
+        return intersearch(lb,up,k)
+arr=array('i',[])
+n=int(input("enter the size"))
+for i in range(0,n):
+    arr.append(int(input("enter element")))
+k=int(input("enter the element to search"))
+arr=sorted(arr)
+l=intersearch(0,n-1,k)
+if l>=0:
+    print(k,'element is found at index',l+1)
+else:
+    print("not found")
